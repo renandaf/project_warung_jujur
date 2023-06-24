@@ -12,8 +12,8 @@ class Preorder extends Model
     protected $fillable = [
         'nama',
         'desc',
-        'stok',
-        'estimasi',
-        'harga',
+      'pemilik',
+      'gambar','no_hp','available'
+       
     ];
 }

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('qr');
             $table->string('pemilik');
             $table->string('qr_code');
+            $table->string('jenis_dagangan');
             $table->timestamps();
         });
     }

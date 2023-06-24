@@ -12,7 +12,10 @@ class Dagangan extends Model
     protected $fillable = [
         'nama',
         'desc',
-        'stok',
         'harga',
+        'gambar',
+        'qr',
+        'qr_code',
+        'jenis_dagangan','pemilik','available'
     ];
 }
