@@ -10,4 +10,5 @@ export default defineConfig({
         }),
         vue()
     ],
+    base: '/project_warung_jujur'
 });
