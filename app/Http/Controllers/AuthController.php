@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
@@ -32,10 +32,12 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
+        $currentDate = Carbon::now()->addDay();
+        $tokenExpiration = $currentDate->format('Y-m-d');
         $token = $user->createToken('token')->plainTextToken;
         $cookie = cookie('jwt', $token, 60 * 24); // 1 day
         return response([
-            'message' => $token
+            $tokenExpiration
         ])->withCookie($cookie);
     }
 
@@ -43,6 +45,8 @@ class AuthController extends Controller
     {
         $user = Auth::user();
         $token = $user->createToken('token')->plainTextToken;
+        $currentDate = Carbon::now()->addDay();
+        $tokenExpiration = $currentDate->format('Y-m-d');
         $cookie = cookie('jwt', $token, 60 * 24);
         // 1 day
         if ($request->hasFile('gambar')) {
@@ -77,7 +81,7 @@ class AuthController extends Controller
             }
         }
         return response([
-            'message' => $token
+            $tokenExpiration
         ])->withCookie($cookie);
     }
 

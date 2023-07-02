@@ -110,6 +110,7 @@ export default {
                       .dispatch("logout")
                       .then(() => {
                           alert("Sign out berhasil");
+
                           location.reload();
                       })
                       .catch((error) => {

@@ -3,12 +3,12 @@
         <img
             :src="img"
             alt="item preorder"
-            style="height: 280px; width: 250px"
+            style="height: 280px; width: 250px; margin-bottom: 10px"
         />
         <br />
         <h4>{{ name }}</h4>
         <br />
-        <p class="ingredients">{{ description || "Tidak ada deskripsi" }}</p>
+        <!-- <p class="ingredients">{{ description || "Tidak ada deskripsi" }}</p> -->
         <div>
             <button class="btn btn-danger px-4" @click="navigateToEdit">
                 Edit

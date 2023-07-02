@@ -18,7 +18,7 @@ class PreorderController extends Controller
     public function index()
     {
         //get data from table posts
-        $preorder = Preorder::where('status', 'diterima')->latest()->get();
+        $preorder = Preorder::where([['status', 'diterima'], ['available', 'tersedia']])->latest()->get();
         //make response JSON
         return response()->json([
             'success' => true,
@@ -77,7 +77,7 @@ class PreorderController extends Controller
     {
         //set validation
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
+            'judul' => 'required',
             'no_hp' => 'required',
         ]);
         //response error validation
@@ -90,7 +90,7 @@ class PreorderController extends Controller
             $gambar->storeAs('public/preorder', $gambar->hashName());
 
             $preorder = preorder::create([
-                'nama' => $request->nama,
+                'judul' => $request->judul,
                 'no_hp' => $request->no_hp,
                 'deskripsi' => $request->deskripsi,
                 'user_id' => Auth::user()->id,
@@ -100,12 +100,13 @@ class PreorderController extends Controller
             ]);
         } else {
             $preorder = preorder::create([
-                'nama' => $request->nama,
+                'judul' => $request->judul,
                 'no_hp' => $request->no_hp,
                 'deskripsi' => $request->deskripsi,
                 'user_id' => Auth::user()->id,
                 'available' => 'tersedia',
                 'status' => 'diajukan',
+                'gambar' => "default.png",
             ]);
         }
         //success save to database
@@ -134,7 +135,7 @@ class PreorderController extends Controller
     {
         //set validation
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
+            'judul' => 'required',
             'no_hp' => 'required',
         ]);
         //response error validation
@@ -154,7 +155,7 @@ class PreorderController extends Controller
                 $gambar = $request->file('gambar');
                 $gambar->storeAs('public/preorder', $gambar->hashName());
                 $preorder->update([
-                    'nama' => $request->nama,
+                    'judul' => $request->judul,
                     'no_hp' => $request->no_hp,
                     'deskripsi' => $request->deskripsi,
                     'available' => $request->available,
@@ -163,11 +164,12 @@ class PreorderController extends Controller
                 ]);
             } else {
                 $preorder->update([
-                    'nama' => $request->nama,
+                    'judul' => $request->judul,
                     'no_hp' => $request->no_hp,
                     'deskripsi' => $request->deskripsi,
                     'available' => $request->available,
                     'status' => 'diajukan',
+                    'gambar' => "default.png",
                 ]);
             }
             return response()->json([

@@ -1,0 +1,45 @@
+{
+  "hero-bg1.jpg": {
+    "file": "assets/hero-bg1-eb6443b3.jpg",
+    "src": "hero-bg1.jpg"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-b8080ed1.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/menu-item-1-a3df7c00.png",
+      "assets/default-6ad1093e.png",
+      "assets/profile-6e21ba0e.png",
+      "assets/hero-bg1-eb6443b3.jpg"
+    ],
+    "css": [
+      "assets/app-b8080ed1.css"
+    ],
+    "file": "assets/app-62e30e59.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/assets/img/default.png": {
+    "file": "assets/default-6ad1093e.png",
+    "src": "resources/js/assets/img/default.png"
+  },
+  "resources/js/assets/img/hero-bg1.jpg": {
+    "file": "assets/hero-bg1-eb6443b3.jpg",
+    "src": "resources/js/assets/img/hero-bg1.jpg"
+  },
+  "resources/js/assets/img/menu/menu-item-1.png": {
+    "file": "assets/menu-item-1-a3df7c00.png",
+    "src": "resources/js/assets/img/menu/menu-item-1.png"
+  },
+  "resources/js/assets/img/profile.png": {
+    "file": "assets/profile-6e21ba0e.png",
+    "src": "resources/js/assets/img/profile.png"
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app-bbd6a014.css",
+    "isEntry": true,
+    "src": "resources/sass/app.scss"
+  }
+}

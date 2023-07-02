@@ -133,7 +133,6 @@
                                     <label class="mb-1">Deskripsi</label>
                                     <Field
                                         v-model="deskripsi"
-                                        as="textarea"
                                         class="form-control"
                                         name="deskripsi"
                                         rows="5"
@@ -430,12 +429,10 @@ export default {
             const formData = new FormData();
             formData.append("judul", this.judul);
             formData.append("deskripsi", this.deskripsi_p);
-
             if (this.gambar_p) {
                 formData.append("gambar", this.gambar_p);
             }
             formData.append("no_hp", this.no_hp);
-
             axios
                 .post("preorder", formData, {
                     headers: {
@@ -448,8 +445,7 @@ export default {
                 })
                 .catch((error) => {
                     alert(
-                        "Data preorder gagal diajukan : " +
-                            error.response.data.message
+                        "Data preorder gagal diajukan : " + error.response.data
                     );
                 });
         },

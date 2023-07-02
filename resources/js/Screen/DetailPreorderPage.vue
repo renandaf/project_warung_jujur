@@ -16,29 +16,64 @@
                         <b-icon-x></b-icon-x>
                     </button>
                 </div>
-                <div class="preorder-gambar col-lg-8" align="center">
-                    <img
-                        :src="info.gambar"
-                        width="410"
-                        height="470"
-                        alt="gambar"
-                        @error="handleImageError"
-                    />
-
-                    <br />
-                    <h4 class="my-2">{{ info.judul }}</h4>
-                    <p style="color: #a29b9b">
-                        {{ info.deskripsi || "Tidak ada deskripsi" }}
-                    </p>
-                    <a :href="'https://wa.me/' + info.no_hp">
-                        <button
-                            style="background-color: #ce1212; border: none"
-                            class="btn btn-danger"
+                <swiper
+                    :navigation="{ clickable: true }"
+                    :breakpoints="{
+                        320: {
+                            spaceBetween: 200,
+                        },
+                        640: {
+                            spaceBetween: 200,
+                        },
+                    }"
+                    data-aos="fade"
+                    data-aos-duration="800"
+                >
+                    <swiper-slide>
+                        <div
+                            class="preorder-gambar col-lg-8"
+                            align="center"
+                            style="padding-top: 10px"
                         >
-                            Pesan sekarang
-                        </button></a
-                    >
-                </div>
+                            <img
+                                :src="info.gambar"
+                                width="420"
+                                height="480"
+                                alt="gambar"
+                            />
+                            <br />
+                            <br />
+                            <h3>{{ info.judul }}</h3>
+                            <br />
+                            <a :href="'https://wa.me/' + info.no_hp">
+                                <button
+                                    style="
+                                        background-color: #ce1212;
+                                        border: none;
+                                    "
+                                    class="btn btn-danger"
+                                >
+                                    Pesan sekarang
+                                </button></a
+                            >
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide v-if="info.deskripsi" align="left">
+                        <br />
+
+                        <div class="container" style="padding: 0 250px">
+                            <h1 style="color: #ffffff; text-align: center">
+                                Deskripsi
+                            </h1>
+                            <br />
+                            <p style="white-space: pre-line; color: #cfcfcf">
+                                {{ info.deskripsi }}
+                            </p>
+                        </div>
+                        <br />
+                        <br />
+                    </swiper-slide>
+                </swiper>
             </div>
         </div>
     </div>
@@ -46,6 +81,7 @@
 
 <script>
 import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/vue";
 export default {
     name: "ModalItem",
     data() {
@@ -54,6 +90,10 @@ export default {
             loading: true,
             errored: false,
         };
+    },
+    components: {
+        Swiper,
+        SwiperSlide,
     },
     props: ["id"],
     mounted() {

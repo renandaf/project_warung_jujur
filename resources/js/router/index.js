@@ -123,8 +123,21 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
     // User is not authenticated, redirect to login
     next('/login');
+  } else if (to.meta.requiresAuth && store.getters.isAuthenticated) {
+    // Check if the token has expired
+    const tokenExpiration = new Date(store.getters.tokenExpiration);
+    const now = new Date();
+
+    if (tokenExpiration <= now) {
+      // Token has expired, perform logout action
+      store.dispatch('logout');
+      next('/login');
+    } else {
+      // Token is still valid, proceed with the navigation
+      next();
+    }
   } else {
-    // Continue to the requested route
+    // No authentication required, proceed with the navigation
     next();
   }
 });

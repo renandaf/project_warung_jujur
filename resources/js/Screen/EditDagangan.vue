@@ -98,7 +98,6 @@
                                     <label class="mb-1">Deskripsi</label>
                                     <Field
                                         v-model="formData.deskripsi"
-                                        as="textarea"
                                         class="form-control"
                                         name="deskripsi"
                                         rows="5"

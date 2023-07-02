@@ -7,12 +7,17 @@ export default createStore({
         return {
             auth: false,
             user: null,
-            error: null
+            error: null,
+            tokenExpiration: null,
         };
     },
     mutations: {
+
         SET_AUTH(state, auth) {
             state.auth = auth;
+        },
+        SET_EXPIRATION(state, tokenExpiration) {
+            state.tokenExpiration = tokenExpiration;
         },
         SET_USER(state, user) {
             state.user = user;
@@ -28,15 +33,20 @@ export default createStore({
         },
         CLEAR_USER(state) {
             state.user = null;
-        }
+        },
+        CLEAR_EXPIRATION(state) {
+            state.tokenExpiration = null;
+        },
     },
     actions: {
         login({ commit }, { email, password }) {
             return new Promise((resolve, reject) => {
                 const data = { email, password };
                 axios.post('login', data)
-                    .then(() => {
+                    .then((response) => {
+                        const data = response.data;
                         commit('SET_AUTH', true);
+                        commit('SET_EXPIRATION', data);
                         commit('CLEAR_ERROR');
                         resolve();
                     })
@@ -67,6 +77,7 @@ export default createStore({
                         commit('CLEAR_ERROR');
                         commit('CLEAR_AUTH');
                         commit('CLEAR_USER');
+                        commit('CLEAR_EXPIRATION');
                         resolve();
                     })
                     .catch(error => {
@@ -79,6 +90,9 @@ export default createStore({
 
     },
     getters: {
+        expiration(state) {
+            return state.tokenExpiration;
+        },
         isAuthenticated(state) {
             return state.auth;
         },

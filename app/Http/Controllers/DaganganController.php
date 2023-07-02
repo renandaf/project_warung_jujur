@@ -18,7 +18,7 @@ class DaganganController extends Controller
     public function index()
     {
 
-        $dagangan = Dagangan::where('status', 'diterima')->latest()->get();
+        $dagangan = Dagangan::where([['status', 'diterima'], ['available', 'tersedia']])->latest()->get();
         //make response JSON
         return response()->json([
             'success' => true,

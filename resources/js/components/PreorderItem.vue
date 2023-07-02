@@ -4,9 +4,9 @@
             <img :src="img" alt="default img" class="event-img" />
             <div class="title-bg">
                 <div class="price align-self-start">{{ name }}</div>
-                <p class="description">
+                <!-- <p style="white-space: pre-line" class="description">
                     {{ description || "Tidak ada deskripsi" }}
-                </p>
+                </p> -->
             </div>
         </div>
     </a>

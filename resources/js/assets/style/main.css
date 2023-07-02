@@ -845,6 +845,8 @@ section {
     font-family: var(--font-secondary);
     color: #8d8d9b;
     margin-bottom: 5px;
+    height: 50px;
+    overflow: hidden;
   }
   
   .menu .tab-content .menu-item .price {
@@ -959,7 +961,8 @@ section {
 
   #preorder-item .event-item .title-bg {
     background-color: rgba(0, 0, 0, 0.6);
-    height: auto;
+    height: 90px;
+    overflow :unset;
     width: auto;
     position: relative;
     padding: 15px 20px;
@@ -994,6 +997,8 @@ section {
     margin-bottom: 0;
     color: rgba(255, 255, 255, 0.9);
     position: relative;
+    height: 95px;
+    overflow: hidden;
   }
   
   @media (min-width: 1200px) {

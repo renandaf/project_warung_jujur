@@ -30,11 +30,12 @@
                         </div>
                         <hr />
                         <table
+                            style="vertical-align: middle"
                             class="table table-striped table-bordered mt-4 text-center table-hover"
                         >
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">NAMA</th>
+                                    <th scope="col">JUDUL</th>
                                     <th scope="col">NO HP</th>
                                     <th scope="col">DESKRIPSI</th>
                                     <th scope="col">AVAILABLE</th>
@@ -55,8 +56,14 @@
                                     <td @click="navigateToDetail(preorder.id)">
                                         {{ preorder.no_hp }}
                                     </td>
-                                    <td @click="navigateToDetail(preorder.id)">
-                                        {{ preorder.deskripsi }}
+                                    <td
+                                        align="left"
+                                        @click="navigateToDetail(preorder.id)"
+                                        style="width: 40%"
+                                    >
+                                        <p style="white-space: pre-line">
+                                            {{ preorder.deskripsi }}
+                                        </p>
                                     </td>
                                     <td @click="navigateToDetail(preorder.id)">
                                         {{ preorder.available }}
@@ -95,28 +102,24 @@
                                     <td v-else>
                                         {{ preorder.status }}
                                     </td>
-                                    <td class="text-left">
-                                        <span
+                                    <td class="col-2">
+                                        <button
                                             v-if="preorder.status == 'diajukan'"
+                                            @click="diterima(preorder.id)"
+                                            class="btn btn-sm btn-success mr-1 col-12 my-1"
                                         >
-                                            <button
-                                                @click="diterima(preorder.id)"
-                                                class="btn btn-sm btn-success mr-1"
-                                            >
-                                                TERIMA
-                                            </button>
-                                            |
-                                            <button
-                                                @click="ditolak(preorder.id)"
-                                                class="btn btn-sm btn-warning mr-1"
-                                            >
-                                                TOLAK
-                                            </button>
-                                            |
-                                        </span>
+                                            TERIMA
+                                        </button>
+                                        <button
+                                            v-if="preorder.status == 'diajukan'"
+                                            @click="ditolak(preorder.id)"
+                                            class="btn btn-sm btn-warning mr-1 col-12 my-1"
+                                        >
+                                            TOLAK
+                                        </button>
                                         <button
                                             @click="preorderDelete(preorder.id)"
-                                            class="btn btn-sm btn-danger ml-1"
+                                            class="btn btn-sm btn-danger ml-1 col-12 my-1"
                                         >
                                             DELETE
                                         </button>

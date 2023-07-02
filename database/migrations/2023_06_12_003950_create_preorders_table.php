@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('preorders', function (Blueprint $table) {
             $table->id();
-            $table->string('judul')->nullable();
-            $table->string('deskripsi');
+            $table->string('judul');
+            $table->longText('deskripsi')->nullable();
             $table->string('gambar')->nullable();
             $table->string('no_hp');
             $table->unsignedBigInteger('user_id');

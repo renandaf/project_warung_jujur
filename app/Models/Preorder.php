@@ -17,6 +17,13 @@ class Preorder extends Model
     'gambar', 'no_hp', 'available', 'status', 'catatan'
   ];
 
+  protected $appends = ['gambar'];
+
+  function getGambarAttribute()
+  {
+    return asset('storage/preorder/' . $this->attributes['gambar']);
+  }
+
   public function user(): BelongsTo
   {
     return $this->belongsTo(User::class);

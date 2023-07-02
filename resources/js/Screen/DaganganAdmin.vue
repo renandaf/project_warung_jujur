@@ -31,6 +31,7 @@
                         <hr />
                         <table
                             class="table table-striped table-bordered mt-4 text-center table-hover"
+                            style="vertical-align: middle"
                         >
                             <thead class="thead-dark">
                                 <tr>
@@ -39,7 +40,7 @@
                                     <th scope="col">DESKRIPSI</th>
                                     <th scope="col">AVAILABLE</th>
                                     <th scope="col">PEMILIK</th>
-                                    <th scope="col">JENIS DAGANGAN</th>
+                                    <th scope="col">JENIS</th>
                                     <th scope="col">STATUS</th>
                                     <th scope="col">ACTION</th>
                                 </tr>
@@ -99,28 +100,24 @@
                                     <td v-else>
                                         {{ dagangan.status }}
                                     </td>
-                                    <td class="text-left">
-                                        <span
-                                            v-if="dagangan.status == 'diajukan'"
-                                        >
-                                            <button
-                                                @click="diterima(dagangan.id)"
-                                                class="btn btn-sm btn-success mr-1"
-                                            >
-                                                TERIMA
-                                            </button>
-                                            |
-                                            <button
-                                                @click="ditolak(dagangan.id)"
-                                                class="btn btn-sm btn-warning mr-1"
-                                            >
-                                                TOLAK
-                                            </button>
-                                            |
-                                        </span>
+                                    <td class="col-2">
                                         <button
-                                            @click="daganganDelete(dagangan.id)"
-                                            class="btn btn-sm btn-danger ml-1"
+                                            v-if="dagangan.status == 'diajukan'"
+                                            @click="diterima(dagangan.id)"
+                                            class="btn btn-sm btn-success mr-1 col-12 my-1"
+                                        >
+                                            TERIMA
+                                        </button>
+                                        <button
+                                            v-if="dagangan.status == 'diajukan'"
+                                            @click="ditolak(dagangan.id)"
+                                            class="btn btn-sm btn-warning mr-1 col-12 my-1"
+                                        >
+                                            TOLAK
+                                        </button>
+                                        <button
+                                            @click="preorderDelete(dagangan.id)"
+                                            class="btn btn-sm btn-danger ml-1 col-12 my-1"
                                         >
                                             DELETE
                                         </button>
