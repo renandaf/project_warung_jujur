@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('preorders', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('desc');
-            $table->string('gambar');
+            $table->string('judul')->nullable();
+            $table->string('deskripsi');
+            $table->string('gambar')->nullable();
             $table->string('no_hp');
-            $table->string('pemilik');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('status');
+            $table->string('catatan')->nullable();
             $table->string('available');
             $table->timestamps();
         });

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -21,8 +22,11 @@ class User extends Authenticatable
         'nama',
         'email',
         'password',
-        'role'
+        'role',
+        'gambar'
     ];
+
+    protected $appends = ['gambar'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -32,4 +36,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function dagangan(): HasMany
+    {
+        return $this->hasMany(Dagangan::class);
+    }
+
+    function getGambarAttribute()
+    {
+        return asset('storage/user/' . $this->attributes['gambar']);
+    }
 }
